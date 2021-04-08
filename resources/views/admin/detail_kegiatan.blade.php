@@ -50,8 +50,9 @@
                             <input type="hidden" name="id" id="id"> 
                             <div class="form-group">
                                 <label for="foto" class="col-sm-12">Foto</label>
+                                <div class="col-sm-12 image-edit mb-5"></div>
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="file" name="foto" id="foto">
+                                    <input type="file" class="form-control" name="foto" id="foto">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -135,16 +136,19 @@
                 type: 'GET'
             },
             columns: [{
-                    data: 'id',
-                    name: 'id'
+                    data: 'id_kegiatan',
+                    name: 'id_kegiatan'
                 },
                 {
-                    data: 'foto',
-                    name: 'foto'
+                    data: 'foto_kegiatan',
+                    name: 'foto_kegiatan',
+                    render: function (data, type, row) {
+                        return '<img src="foto/'+data+'" class="img-fluid" style="width: 200px"></img>'
+                    }
                 },
                 {
-                    data: 'nama',
-                    name: 'kegiatan.nama_kegiatan'
+                    data: 'nama_kegiatan',
+                    name: 'nama_kegiatan'
                 },
                 {
                     data: 'action',
@@ -167,12 +171,21 @@
                 var actionType = $('#tombol-simpan').val();
                 $('#tombol-simpan').html('Sending..');
 
+                var formdata = new FormData()
+                formdata.append('foto', $('#foto')[0].files[0])
+                formdata.append('kegiatan_id', $('#kegiatan_id option:selected').val())
+                formdata.append('id', $('#id').val())
+                console.log(formdata)
+
                 $.ajax({
-                    data: $('#form-tambah-edit')
-                        .serialize(), //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
+                    // data: $('#form-tambah-edit')
+                    //     .serialize(), //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
+                    data : formdata,
                     url: "{{ route('detail_kegiatan.store') }}", //url simpan data
                     type: "POST", //karena simpan kita pakai method POST
                     dataType: 'json', //data tipe kita kirim berupa JSON
+                    processData: false,
+                    contentType: false,
                     success: function(data) { //jika berhasil 
                         $('#form-tambah-edit').trigger("reset"); //form reset
                         $('#tambah-edit-modal').modal('hide'); //modal hide
@@ -187,6 +200,8 @@
                     },
                     error: function(data) { //jika error tampilkan error pada console
                         console.log('Error:', data);
+                        alert('gagal');
+                        console.log(data)
                         $('#tombol-simpan').html('Simpan');
                     }
                 });
@@ -204,9 +219,8 @@
             $('#tambah-edit-modal').modal('show');
 
             //set value masing-masing id berdasarkan data yg diperoleh dari ajax get request diatas               
-            $('#id').val(data.id);
-            $('#foto').val(data.foto);
-            $('#kegiatan_id').val(data.kegiatan_id);
+            $("input[name='id']").attr("value", data.id)
+            $("select[name='kegiatan_id']").val(data.kegiatan_id)
         })
     });
 
