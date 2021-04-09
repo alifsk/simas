@@ -7,6 +7,7 @@ use App\Models\DetailKegiatan;
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use File;
 
 class DetailKegiatanController extends Controller
@@ -68,10 +69,13 @@ class DetailKegiatanController extends Controller
      */
     public function store(Request $request)
     {
+        // Get data from request
         $id = $request->id;
         $kegiatan_id = $request->kegiatan_id;
 
+        // Check if photo is exist or empty
         if (!$request->file('foto')) {
+            // If photo is empty
             $data = DetailKegiatan::updateOrCreate(
                 ['id' => $id],
                 [
@@ -79,24 +83,38 @@ class DetailKegiatanController extends Controller
                 ]
             );
         } else {
+            // Validate photo rules
             $request->validate([
                 'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
+            // Get photo
             $files = $request->file('foto');
-            $destinationPath = public_path('foto'); // upload path
-            $foto = date('YmdHis') . "." . $files->getClientOriginalExtension(); //upload original name
-            $files->move($destinationPath, $foto);
+
+            // Set filename
+            $fileName = 'detail_kegiatan_' .date('YmdHis'). '.' .$files->getClientOriginalExtension();
+
+            // If photo is exist on storage, delete old photo
+            if ($id != null) {
+                $detail_foto = DetailKegiatan::where('id',$id)->first();
+
+                Storage::delete('public/detailKegiatan/'.$detail_foto->foto);
+            }
+
+            // Save photo to storage
+            $files->storeAs('public/detailKegiatan', $fileName);
     
+            // Save or update all data to DB
             $data = DetailKegiatan::updateOrCreate(
                 ['id' => $id],
                 [
                     'kegiatan_id' => $request->kegiatan_id,
-                    'foto' => $foto,
+                    'foto' => $fileName,
                 ]
             );
         }
 
+        // Return response
         return response()->json($data);
     }
 
@@ -145,9 +163,11 @@ class DetailKegiatanController extends Controller
      */
     public function destroy($id)
     {
-        $data = DetailKegiatan::where('id', $id)->first('foto');
-        File::delete('public/foto/' . $data->foto);
+        // Delete photo on storage
+        $data = DetailKegiatan::where('id', $id)->first();
+        Storage::delete('public/detailKegiatan/'.$data->foto);
 
+        // Delete data on DB
         $delete = DetailKegiatan::where('id', $id)->delete();
 
         return response()->json($delete);

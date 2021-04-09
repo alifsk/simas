@@ -143,7 +143,7 @@
                     data: 'foto_kegiatan',
                     name: 'foto_kegiatan',
                     render: function (data, type, row) {
-                        return '<img src="foto/'+data+'" class="img-fluid" style="width: 200px"></img>'
+                        return `<img src="{{ url('storage/detailKegiatan/`+data+`') }}" class="img-fluid" style="width: 200px">`
                     }
                 },
                 {
@@ -175,7 +175,6 @@
                 formdata.append('foto', $('#foto')[0].files[0])
                 formdata.append('kegiatan_id', $('#kegiatan_id option:selected').val())
                 formdata.append('id', $('#id').val())
-                console.log(formdata)
 
                 $.ajax({
                     // data: $('#form-tambah-edit')
