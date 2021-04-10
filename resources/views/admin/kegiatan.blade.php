@@ -208,8 +208,16 @@
                         });
                     },
                     error: function(data) { //jika error tampilkan error pada console
-                        console.log('Error:', data);
-                        $('#tombol-simpan').html('Simpan');
+                        $('#form-tambah-edit').trigger("reset"); //form reset
+                        $('#tambah-edit-modal').modal('hide'); //modal hide
+                        $('#tombol-simpan').html('Simpan'); //tombol simpan
+                        var table = $('#tableKegiatan').dataTable(); //inialisasi datatable
+                        table.fnDraw(false); //reset datatable
+                        swal({
+                            title: "Gagal!",
+                            text: "Data Tidak Berhasil disimpan.",
+                            icon: "error",
+                        });
                     }
                 });
             }
@@ -255,7 +263,9 @@
                     var table = $('#tableKegiatan').dataTable();
                     table.fnDraw(false); //reset datatable
                 });
-                swal("Data Berhasil dihapus!");
+                swal("Data Berhasil dihapus!", {
+                    icon: "success",
+                });
             }
         })
     });

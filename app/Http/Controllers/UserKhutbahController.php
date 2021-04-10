@@ -24,20 +24,9 @@ class UserKhutbahController extends Controller
                 'khutbah_jumat.tgl',
                 'users.name',
                 'khutbah_jumat.topik'
-            ])->get();
-
-        // if ($request->ajax()) {
-        //     return datatables()->of($khutbah)
-        //         ->addColumn('action', function ($data) {
-        //             $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm edit-post"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>';
-        //             $button .= '&nbsp;&nbsp;';
-        //             $button .= '<button type="button" name="delete" id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>';
-        //             return $button;
-        //         })
-        //         ->rawColumns(['action'])
-        //         ->addIndexColumn()
-        //         ->make(true);
-        // }
+            ])
+            ->orderBy('khutbah_jumat.tgl', 'desc')
+            ->paginate(3);
 
         return view('user.jumat', ['users' => $users, 'khutbah' => $khutbah]);
     }

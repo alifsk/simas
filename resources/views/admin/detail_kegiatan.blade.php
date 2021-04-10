@@ -14,7 +14,7 @@
         <!-- /.box-header -->
         <div class="box-body">
             <div class="row">
-                <div class="col-sm-12 table-responsive">
+                <div class="col-lg-12 table-responsive">
                     <table id="tableDetailKegiatan" class="table table-bordered table-striped" style="width: 100%;">
                         <thead>
                             <tr>
@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <label for="name" class="col-sm-12">Nama Kegiatan</label>
                                 <div class="col-sm-12">
-                                    <select class="form-control" name="kegiatan_id" id="kegiatan_id">
+                                    <select class="form-control" name="kegiatan_id" id="kegiatan_id" required>
                                         @foreach($kegiatan as $data)
                                         <option value="{{ $data->id }}">{{ $data->nama_kegiatan }}</option>
                                         @endforeach
@@ -244,7 +244,9 @@
                     var table = $('#tableDetailKegiatan').dataTable();
                     table.fnDraw(false); //reset datatable
                 });
-                swal("Data Berhasil dihapus!");
+                swal("Data Berhasil dihapus!", {
+                    icon: "success",
+                });
             }
         })
     });
