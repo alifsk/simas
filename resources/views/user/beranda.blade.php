@@ -46,3 +46,7 @@
 </div><!-- End About Section -->
 
 @endsection
+
+@section('home-menu-active')
+active
+@endsection

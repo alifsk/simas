@@ -52,3 +52,7 @@
 </div>
 
 @endsection
+
+@section('sholat-menu-active')
+active
+@endsection
