@@ -65,7 +65,7 @@
             <!-- single-awesome-project end -->
         </div>
         <div class="row">
-            <div class="col-lg-12 text-center">
+            <div class="col-lg-12 mt-5 text-center">
                 {{ $kegiatan->links('vendor.pagination.custom') }}
             </div>                            
         </div>

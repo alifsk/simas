@@ -29,22 +29,13 @@
                               <p>{{$k->topik}}</p>
                             </div>
                           </div>
-                            {{-- <div class="pri_table_list active">
-                                <h3>{{$k->nama_kegiatan}}</h3>
-                                <ol>
-                                    <li>
-                                        <a class="btn btn-success btn-sm"><i class="fa fa-calendar"></i> Tanggal</a> 
-                                        <strong><p>{{$k->tgl}}</p></strong>
-                                    </li>
-                                    <li>
-                                        <a class="btn btn-primary btn-sm"><i class="fa fa-tags"></i> Deskripsi</a> 
-                                        <strong><p>{{$k->deskripsi}}</p></strong>
-                                    </li>
-                                </ol>
-                                <button>sign up now</button>
-                            </div> --}}
                     </div>
                     @endforeach
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 mt-5 text-center">
+                        {{ $khutbah->links('vendor.pagination.custom') }}
+                    </div>                            
                 </div>
             </div>
         </div>

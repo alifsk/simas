@@ -26,7 +26,8 @@ class UserKegiatanController extends Controller
                 'kegiatan.nama_kegiatan',
                 'kegiatan.deskripsi'
             ])
-            ->paginate(6);
+            ->orderBy('kegiatan.tgl', 'desc')
+            ->paginate(3);
 
         return view('user.kegiatan', ['kegiatan' => $kegiatan, 'jenis_kegiatan' => $jenis_kegiatan]);
     }
