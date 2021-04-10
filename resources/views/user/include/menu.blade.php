@@ -10,7 +10,7 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class=""><a href="{{ route('user/beranda') }}">Beranda</a></li>
+                <li class="active"><a href="{{ route('user/beranda') }}">Beranda</a></li>
                 <li class="drop-down"><a href="#">Sholat</a>
                     <ul>
                         <li><a href="{{ route('user/imam') }}">Jadwal Imam Sholat</a></li>
