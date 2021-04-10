@@ -7,6 +7,7 @@ use App\Models\DetailKegiatan;
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use File;
 
 class DetailKegiatanController extends Controller
@@ -28,17 +29,18 @@ class DetailKegiatanController extends Controller
         $detail_kegiatan = DB::table('detail_kegiatan')
             ->join('kegiatan', 'kegiatan.id', '=', 'detail_kegiatan.kegiatan_id')
             ->select([
-                'detail_kegiatan.id',
-                'detail_kegiatan.foto',
-                'kegiatan.nama_kegiatan',
+                'detail_kegiatan.id as id_kegiatan',
+                'detail_kegiatan.foto as foto_kegiatan',
+                'kegiatan.nama_kegiatan as nama_kegiatan',
             ]);
+        
 
         if ($request->ajax()) {
             return datatables()->of($detail_kegiatan)
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-info btn-sm edit-post"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>';
+                    $button = '<button data-id="' . $data->id_kegiatan . '" data-original-title="Edit" class="edit btn btn-info btn-sm edit-post"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>';
                     $button .= '&nbsp;&nbsp;';
-                    $button .= '<button type="button" name="delete" id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>';
+                    $button .= '<button type="button" name="delete" id="' . $data->id_kegiatan . '" class="delete btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>';
                     return $button;
                 })
                 ->rawColumns(['action'])
@@ -67,32 +69,52 @@ class DetailKegiatanController extends Controller
      */
     public function store(Request $request)
     {
+        // Get data from request
         $id = $request->id;
+        $kegiatan_id = $request->kegiatan_id;
 
-        $request->validate([
-            'foto' => 'foto|mimes:jpeg, png, jpg, gif, svg|max:2048',
-        ]);
+        // Check if photo is exist or empty
+        if (!$request->file('foto')) {
+            // If photo is empty
+            $data = DetailKegiatan::updateOrCreate(
+                ['id' => $id],
+                [
+                    'kegiatan_id' => $request->kegiatan_id
+                ]
+            );
+        } else {
+            // Validate photo rules
+            $request->validate([
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
 
-        if ($files = $request->file('foto')) {
-            //insert new file
-            $destinationPath = public_path('foto'); // upload path
-            $foto = date('YmdHis') . "." . $files->getClientOriginalExtension(); //upload original name
-            $files->move($destinationPath, $foto);
-            $insert['foto'] = "$foto";
-            //save in database
-            $image = new DetailKegiatan();
-            $image->photo_name = "$foto";
-            $image->save();
+            // Get photo
+            $files = $request->file('foto');
+
+            // Set filename
+            $fileName = 'detail_kegiatan_' .date('YmdHis'). '.' .$files->getClientOriginalExtension();
+
+            // If photo is exist on storage, delete old photo
+            if ($id != null) {
+                $detail_foto = DetailKegiatan::where('id',$id)->first();
+
+                Storage::delete('public/detailKegiatan/'.$detail_foto->foto);
+            }
+
+            // Save photo to storage
+            $files->storeAs('public/detailKegiatan', $fileName);
+    
+            // Save or update all data to DB
+            $data = DetailKegiatan::updateOrCreate(
+                ['id' => $id],
+                [
+                    'kegiatan_id' => $request->kegiatan_id,
+                    'foto' => $fileName,
+                ]
+            );
         }
 
-        $data = DetailKegiatan::updateOrCreate(
-            ['id' => $id],
-            [
-                'kegiatan_id' => $request->kegiatan_id,
-                'foto' => $request->foto,
-            ]
-        );
-
+        // Return response
         return response()->json($data);
     }
 
@@ -141,9 +163,11 @@ class DetailKegiatanController extends Controller
      */
     public function destroy($id)
     {
-        $data = DetailKegiatan::where('id', $id)->first('foto');
-        File::delete('public/foto/' . $data->foto);
+        // Delete photo on storage
+        $data = DetailKegiatan::where('id', $id)->first();
+        Storage::delete('public/detailKegiatan/'.$data->foto);
 
+        // Delete data on DB
         $delete = DetailKegiatan::where('id', $id)->delete();
 
         return response()->json($delete);

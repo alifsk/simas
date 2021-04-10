@@ -10,27 +10,27 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class="active"><a href="{{ route('user/beranda') }}">Beranda</a></li>
-                <li class="drop-down"><a href="#">Sholat</a>
+                <li><a href="{{ route('user/beranda') }}" class="@yield('home-menu-active')">Beranda</a></li>
+                <li class="drop-down"><a href="#" class="@yield('sholat-menu-active')">Sholat</a>
                     <ul>
                         <li><a href="{{ route('user/imam') }}">Jadwal Imam Sholat</a></li>
                         <li><a href="{{ route('user/khutbah') }}">Jadwal Khutbah Jumat</a></li>
                     </ul>
                 </li>
-                <li class="drop-down"><a href="#">Kas Masjid</a>
+                <li class="drop-down"><a href="#" class="@yield('kas-menu-active')">Kas Masjid</a>
                     <ul>
                       <li><a href="{{ route('user/pemasukan') }}">Pemasukan</a></li>
                       <li><a href="{{ route('user/pengeluaran') }}">Pengeluaran</a></li>
                     </ul>
                 </li>
-                {{-- <li class="drop-down"><a href="#">Layanan</a>
+                {{-- <li class="drop-down"><a href="#"  class="@yield('layanan-menu-active')">Layanan</a>
                     <ul>
                       <li><a href="{{ route('user/muallaf') }}">Muallaf Center</a></li>
                     </ul>
                 </li> --}}
-                <li ><a href="{{ route('user/kegiatan') }}">Kegiatan</a></li>
-                <li><a href="{{ route('user/gallery') }}">Gallery</a></li>
-                <li><a href="{{ url('/login') }}">Login</a></li>
+                <li ><a href="{{ route('user/kegiatan') }}" class="@yield('kegiatan-menu-active')">Kegiatan</a></li>
+                <li><a href="{{ route('user/gallery') }}" class="@yield('gallery-menu-active')">Gallery</a></li>
+                <li><a href="{{ url('/login') }}" class="@yield('login-menu-active')">Login</a></li>
 
             </ul>
         </nav><!-- .nav-menu -->

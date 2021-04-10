@@ -13,7 +13,12 @@
     @include('user/include.css')
     <!-- Datatables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-
+    @stack('styles')
+    <style>
+        .nav-menu ul li a.active {
+            color: #3ec1d5 !important;
+        }
+    </style>
     <!-- =======================================================
   * Template Name: eBusiness - v2.2.0
   * Template URL: https://bootstrapmade.com/ebusiness-bootstrap-corporate-template/
@@ -44,8 +49,9 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    @include('user/include.javascript')
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @include('user/include.javascript')
     @yield('extendsjs')
 </body>
 
