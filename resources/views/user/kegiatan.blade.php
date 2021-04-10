@@ -52,3 +52,7 @@
 </div>
 
 @endsection
+
+@section('kegiatan-menu-active')
+active
+@endsection

@@ -90,3 +90,7 @@
     });
 </script>
 @endsection
+
+@section('kas-menu-active')
+active
+@endsection

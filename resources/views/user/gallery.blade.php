@@ -1,7 +1,7 @@
 @extends('user.v_template')
 @section('title','Gallery')
-@section('content')
 
+@section('content')
 <!-- ======= Portfolio Section ======= -->
 <div id="portfolio" class="portfolio-area area-padding fix">
     <div class="container">
@@ -20,7 +20,12 @@
                         <li>
                             <a href="#" class="active" data-filter="*">All</a>
                         </li>
+                        @foreach($jenis_kegiatan as $data_jenis)
                         <li>
+                            <a href="#" data-filter=".<?= str_replace(' ', '-', $data_jenis->nama) ?>">{{ $data_jenis->nama }}</a>
+                        </li>
+                        @endforeach
+                        {{--<li>
                             <a href="#" data-filter=".development">Development</a>
                         </li>
                         <li>
@@ -28,7 +33,7 @@
                         </li>
                         <li>
                             <a href="#" data-filter=".photo">Photoshop</a>
-                        </li>
+                        </li>--}}
                     </ul>
                 </div>
             </div>
@@ -36,109 +41,58 @@
 
         <div class="row awesome-project-content">
             <!-- single-awesome-project start -->
-            <div class="col-md-4 col-sm-4 col-xs-12 design development">
+            @foreach($kegiatan as $data_kegiatan)
+            <div class="col-md-4 col-sm-4 col-xs-12 <?= str_replace(' ', '-', $data_kegiatan->category) ?>">
                 <div class="single-awesome-project">
                     <div class="awesome-img">
-                    <a href="#"><img src="{{ url('assets/img/portfolio/1.jpg')}}" alt="" /></a>
+                        <a href="#">
+                            <img src="{{ Storage::url('detailKegiatan/'.$data_kegiatan->image) }}" alt="{{ $data_kegiatan->name }}" class="img-custom-gallery" />
+                        </a>
                         <div class="add-actions text-center">
                             <div class="project-dec">
-                                <a class="venobox" data-gall="myGallery" href="{{ url('assets/img/portfolio/1.jpg')}}">
-                                    <h4>Business City</h4>
-                                    <span>Web Development</span>
+                                <a class="venobox custom-venobox d-flex align-items-center justify-content-center" data-gall="myGallery" href="{{ Storage::url('detailKegiatan/'.$data_kegiatan->image) }}">
+                                    <div>
+                                        <h4>{{ $data_kegiatan->name }}</h4>
+                                        <span>{{ $data_kegiatan->category }}</span>
+                                    </div>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
             <!-- single-awesome-project end -->
-            <!-- single-awesome-project start -->
-            <div class="col-md-4 col-sm-4 col-xs-12 photo">
-                <div class="single-awesome-project">
-                    <div class="awesome-img">
-                        <a href="#"><img src="{{ url('assets/foto/2.jpg')}}" alt="" /></a>
-                        <div class="add-actions text-center">
-                            <div class="project-dec">
-                                <a class="venobox" data-gall="myGallery" href="img/portfolio/2.jpg">
-                                    <h4>Blue Sea</h4>
-                                    <span>Photosho</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- single-awesome-project end -->
-            <!-- single-awesome-project start -->
-            <div class="col-md-4 col-sm-4 col-xs-12 design">
-                <div class="single-awesome-project">
-                    <div class="awesome-img">
-                    <a href="#"><img src="img/portfolio/3.jpg" alt="" /></a>
-                        <div class="add-actions text-center">
-                            <div class="project-dec">
-                                <a class="venobox" data-gall="myGallery" href="img/portfolio/3.jpg">
-                                    <h4>Beautiful Nature</h4>
-                                    <span>Web Design</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- single-awesome-project end -->
-            <!-- single-awesome-project start -->
-            <div class="col-md-4 col-sm-4 col-xs-12 photo development">
-                <div class="single-awesome-project">
-                    <div class="awesome-img">
-                    <a href="#"><img src="img/portfolio/4.jpg" alt="" /></a>
-                        <div class="add-actions text-center">
-                            <div class="project-dec">
-                                <a class="venobox" data-gall="myGallery" href="img/portfolio/4.jpg">
-                                    <h4>Creative Team</h4>
-                                    <span>Web design</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- single-awesome-project end -->
-            <!-- single-awesome-project start -->
-            <div class="col-md-4 col-sm-4 col-xs-12 development">
-                <div class="single-awesome-project">
-                    <div class="awesome-img">
-                    <a href="#"><img src="img/portfolio/5.jpg" alt="" /></a>
-                        <div class="add-actions text-center text-center">
-                            <div class="project-dec">
-                                <a class="venobox" data-gall="myGallery" href="img/portfolio/5.jpg">
-                                    <h4>Beautiful Flower</h4>
-                                    <span>Web Development</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- single-awesome-project end -->
-            <!-- single-awesome-project start -->
-            <div class="col-md-4 col-sm-4 col-xs-12 design photo">
-                <div class="single-awesome-project">
-                    <div class="awesome-img">
-                        <a href="#"><img src="img/portfolio/6.jpg" alt="" /></a>
-                        <div class="add-actions text-center">
-                            <div class="project-dec">
-                                <a class="venobox" data-gall="myGallery" href="img/portfolio/6.jpg">
-                                    <h4>Night Hill</h4>
-                                    <span>Photoshop</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- single-awesome-project end -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                {{ $kegiatan->links('vendor.pagination.custom') }}
+            </div>                            
         </div>
     </div>
 </div><!-- End Portfolio Section -->
 
 @endsection
+
+@section('gallery-menu-active')
+active
+@endsection
+
+@push('styles')
+<style>
+    .img-custom-gallery {
+        width: 100%; 
+        aspect-ratio: 1 / 1; 
+        object-fit: cover;
+    }
+    .custom-venobox {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1 / 1;
+    }
+    .project-dec .custom-venobox div h4 {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+</style>
+@endpush

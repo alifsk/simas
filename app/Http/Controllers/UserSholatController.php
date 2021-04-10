@@ -47,8 +47,12 @@ class UserSholatController extends Controller
 
     public function result(Request $request)
     {
-        $schedule = Http::get('https://api.banghasan.com/sholat/format/json/jadwal/kota/' . $request->city . '/tanggal/' . $request->time)->json()['jadwal']['data'];
+        $city = explode('-', $request->city);
+        $date = $request->time;
+        
+        $schedule['city_name'] = $city[1];
+        $schedule['data'] = Http::get('https://api.banghasan.com/sholat/format/json/jadwal/kota/' . $city[0] . '/tanggal/' . $date)->json()['jadwal']['data'];
 
-        return view('user.result', compact('schedule'));
+        return response($schedule);
     }
 }
