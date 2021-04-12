@@ -52,10 +52,16 @@ class DashboardController extends Controller
 
     public function getChart()
     {
-        $dana = DB::select("SELECT DATE_FORMAT(tgl_pemasukan, '%M') AS `bulan`, SUM(`jumlah_pemasukan`) AS `total` FROM `pemasukan` GROUP BY `bulan` ORDER BY `id` ASC", []);
+        // $dana = DB::select("SELECT DATE_FORMAT(tgl_pemasukan, '%M') AS `bulan`, SUM(`jumlah_pemasukan`) AS `total` FROM `pemasukan` GROUP BY `bulan` ORDER BY `id` ASC", []);
 
-        $result = DB::select("SELECT DATE_FORMAT(tgl_pengeluaran, '%M') AS `bulan`, SUM(`jumlah_pengeluaran`) AS `total` FROM `pengeluaran` GROUP BY `bulan` ORDER BY `id` ASC", []);
+        // $result = DB::select("SELECT DATE_FORMAT(tgl_pengeluaran, '%M') AS `bulan`, SUM(`jumlah_pengeluaran`) AS `total` FROM `pengeluaran` GROUP BY `bulan` ORDER BY `id` ASC", []);
 
-        return response($result);
+        $data['result_data'] = DB::select("SELECT MONTH(tgl) as bulan, SUM(jumlah_pemasukan) as data_pemasukan, SUM(jumlah_pengeluaran) as data_pengeluaran
+                                            FROM (SELECT tgl_pengeluaran as tgl, 0 as jumlah_pemasukan, jumlah_pengeluaran FROM pengeluaran
+                                            UNION SELECT tgl_pemasukan as tgl, jumlah_pemasukan, 0 as jumlah_pengeluaran FROM pemasukan) as tbl
+                                            GROUP BY MONTH(tgl) 
+                                            ORDER BY tgl ASC");
+
+        return response($data);
     }
 }
