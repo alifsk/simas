@@ -83,7 +83,7 @@ Route::group(['middleware' => 'admin'], function () {
     // Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     //chart
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('chart', [DashboardController::class, 'getChart']);
+    Route::get('chart', [DashboardController::class, 'getChart'])->name('dashboard.getchart');
 });
 
 // Route::get('/', function () {
