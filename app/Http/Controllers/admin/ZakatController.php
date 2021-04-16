@@ -7,6 +7,7 @@ use App\Models\JenisZakat;
 use App\Models\Zakat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class ZakatController extends Controller
 {
@@ -132,5 +133,22 @@ class ZakatController extends Controller
         $delete = Zakat::where('id', $id)->delete();
 
         return response()->json($delete);
+    }
+
+    public function print($id)
+    {
+        $zakat = DB::table('zakat')
+            ->join('jenis_zakat', 'jenis_zakat.id', '=', 'zakat.jenis_zakat_id')
+            ->select([
+                'zakat.id as id',
+                'zakat.tgl as tgl',
+                'jenis_zakat.nama as jenis_zakat',
+                'zakat.pembayar as nama',
+                'zakat.keterangan as ket'
+            ])
+            ->find($id);
+
+        $pdf = PDF::loadView('admin.print_zakat', compact('zakat'))->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 }

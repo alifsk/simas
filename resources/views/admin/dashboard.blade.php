@@ -6,107 +6,121 @@
     <div class="box">
         <div class="box-body">
             <div class="row">
-                {{-- @if (auth()->user()->level == 1) --}}
+                @if (auth()->user()->level == 2)
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
                         <div class="small-box bg-green">
                             <div class="inner">
-                                <h2>{{ $total_pemasukan }}</h2>
+                                <h3>{{ $total_pemasukan }}</h3>
 
                                 <p>Pemasukan Kas Masjid</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('pemasukan.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
                         <div class="small-box bg-red">
                             <div class="inner">
-                                <h2>{{ $total_pengeluaran }}</h2>
+                                <h3>{{ $total_pengeluaran }}</h3>
 
                                 <p>Pengeluaran Kas Masjid</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
+                                <i class="ion ion-ios-pie"></i>
                             </div>
                             <a href="{{ route('pengeluaran.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <h2>{{ $saldo }}</h2>
-
-                                <p>Saldo Kas Masjid</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="{{ route('pemasukan.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
                         <div class="small-box bg-aqua">
                             <div class="inner">
-                                <h2>{{ $user }}</h2>
+                                <h3>{{ $saldo }}</h3>
 
-                                <p>Pengguna</p>
+                                <p>Saldo Kas Masjid</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                {{-- @elseif (auth()->user()->level == 2)
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-green">
-                            <div class="inner">
-                                <h2>{{ $total_pemasukan }}</h2>
-
-                                <p>Pemasukan Kas Masjid</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
+                                <i class="ion ion-information-circled"></i>
                             </div>
                             <a href="{{ route('pemasukan.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
-                        <div class="small-box bg-red">
+                        <div class="small-box bg-orange">
                             <div class="inner">
-                                <h2>{{ $total_pengeluaran }}</h2>
+                                <h3>{{ $zakat }}</h3>
 
-                                <p>Pengeluaran Kas Masjid</p>
+                                <p>Zakat</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a href="{{ route('pengeluaran.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-blue">
-                            <div class="inner">
-                                <h2>{{ $zakat }}</h2>
-
-                                <p>zakat</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
+                                <i class="ion ion-cash"></i>
                             </div>
                             <a href="{{ route('zakat.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                @endif --}}
+                @elseif (auth()->user()->level == 1)
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-maroon">
+                            <div class="inner">
+                                <h3>{{ $khutbah }}</h3>
+
+                                <p>Jadwal</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-ios-time-outline"></i>
+                            </div>
+                            <a href="{{ route('khutbah.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-orange">
+                            <div class="inner">
+                                <h3>{{ $kegiatan }}</h3>
+
+                                <p>Kegiatan</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-easel"></i>
+                            </div>
+                            <a href="{{ route('kegiatan.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-purple">
+                            <div class="inner">
+                                <h3>{{ $kegiatan }}</h3>
+
+                                <p>Kegiatan</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-android-image"></i>
+                            </div>
+                            <a href="{{ route('detail_kegiatan.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <h3>{{ $user }}</h3>
+
+                                <p>Pengguna</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person"></i>
+                            </div>
+                            <a href="{{ route('pengguna.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                @endif
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -158,7 +172,7 @@
                             type: 'column'
                         },
                         title: {
-                            text: 'Grafik Dana Masjid ' + date.getFullYear()
+                            text: 'Grafik Kas Masjid ' + date.getFullYear()
                         },
                         xAxis: {
                             categories: databulan,
@@ -179,6 +193,7 @@
                                 borderWidth: 0
                             }
                         },
+                        colors: ['#00a65a', '#f56954'],
                         series:[ 
                             {
                                 name: 'Pemasukan',

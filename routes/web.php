@@ -37,58 +37,32 @@ use App\Http\Controllers\UserMuallafController;
 |
 */
 
-//hak akses bendahara
-// Route::group(['middleware' => 'bendahara', 'admin'], function () {
-//     // Route::resource('dashboard', DashboardController::class);
-//     Route::resource('sumber_dana', SumberDanaController::class);
-//     Route::resource('pemasukan', PemasukanController::class);
-//     Route::resource('pengeluaran', PengeluaranController::class);
-//     Route::resource('jenis_zakat', JenisZakatController::class);
-//     Route::resource('zakat', ZakatController::class);
-//     Route::resource('rekapitulasi', RekapitulasiController::class);
-//     Route::resource('profile', ProfileController::class);
-//     //chart
-//     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-//     Route::get('chart', [DashboardController::class, 'getChart']);
-//     //cetak pdf
-//     Route::get('laporan_rekapitulasi', [PemasukanController::class, 'rekapitulasi'])->name('laporan_rekapitulasi');
-//     Route::get('laporan_rekapitulasi', [PengeluaranController::class, 'rekapitulasi'])->name('laporan_rekapitulasi');
-//     Route::post('cetak_pemasukan', [PemasukanController::class, 'cetakPertanggal'])->name('cetak_pemasukan');
-//     Route::post('cetak_pengeluaran', [PengeluaranController::class, 'print'])->name('cetak_pengeluaran');
-// });
-
-// hak akses admin
-Route::group(['middleware' => 'admin'], function () {
-    // Route::resource('dashboard', DashboardController::class);
+Route::middleware(['checkrole:1,2'])->group(function () {
     Route::resource('visi', VisiController::class);
     Route::resource('misi', MisiController::class);
+    Route::resource('khutbah', KhutbahJumatController::class);
+    Route::resource('imam', ImamSholatController::class);
+    Route::resource('kegiatan', KegiatanController::class);
+    Route::resource('jenis_kegiatan', JenisKegiatanController::class);
+    Route::resource('detail_kegiatan', DetailKegiatanController::class);
     Route::resource('sumber_dana', SumberDanaController::class);
     Route::resource('pemasukan', PemasukanController::class);
     Route::resource('pengeluaran', PengeluaranController::class);
-    Route::resource('khutbah', KhutbahJumatController::class);
-    Route::resource('imam', ImamSholatController::class);
+    Route::resource('rekapitulasi', RekapitulasiController::class);
     Route::resource('zakat', ZakatController::class);
     Route::resource('jenis_zakat', JenisZakatController::class);
-    Route::resource('kegiatan', KegiatanController::class);
-    Route::resource('jenis_kegiatan', JenisKegiatanController::class);
-    Route::resource('rekapitulasi', RekapitulasiController::class);
     Route::resource('pengguna', UserController::class);
     Route::resource('profile', ProfileController::class);
-    Route::resource('detail_kegiatan', DetailKegiatanController::class);
     // cetak pdf
     Route::get('laporan_rekapitulasi', [PemasukanController::class, 'rekapitulasi'])->name('laporan_rekapitulasi');
     Route::get('laporan_rekapitulasi', [PengeluaranController::class, 'rekapitulasi'])->name('laporan_rekapitulasi');
     Route::post('cetak_pemasukan', [PemasukanController::class, 'cetakPertanggal'])->name('cetak_pemasukan');
     Route::post('cetak_pengeluaran', [PengeluaranController::class, 'print'])->name('cetak_pengeluaran');
-    // Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    //chart
+    Route::get('pembayaran_zakat/{id}', [ZakatController::class, 'print'])->name('pembayaran_zakat');
+    // chart
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('chart', [DashboardController::class, 'getChart'])->name('dashboard.getchart');
 });
-
-// Route::get('/', function () {
-//     return view('user.v_template');
-// });
 
 Route::get('/', [UserBerandaController::class, 'index'])->name('user/beranda');
 Route::get('user/pengeluaran', [UserPengeluaranController::class, 'index'])->name('user/pengeluaran');
@@ -104,15 +78,3 @@ Route::get('/info', [UserSholatController::class, 'index']);
 Route::get('/result', [UserSholatController::class, 'result'])->name('result');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//hak akses ustad
-// Route::group(['middleware' => 'ustad'], function () {
-//     // Route::resource('dashboard', DashboardController::class);
-//     Route::resource('imam', ImamSholatController::class);
-//     Route::resource('khutbah', KhutbahJumatController::class);
-//     Route::resource('profile', ProfileController::class);
-//     //chart
-//     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-//     Route::get('chart', [DashboardController::class, 'getChart']);
-// });
