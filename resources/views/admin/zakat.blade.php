@@ -15,7 +15,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-sm-12 table-responsive">
-                    <table id="tableZakat" class="table table-bordered table-striped" style="width: 100%;">
+                    <table id="tableZakat" class="table-responsive table-bordered table-striped" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -175,7 +175,7 @@
 
             ],
             order: [
-                [0, 'asc']
+                [0, 'desc']
             ]
         });
     });
@@ -268,6 +268,11 @@
                 });
             }
         })
+    });
+
+    $(document).on('click', '.print', function() {
+        dataId = $(this).attr('id');
+        // $('#konfirmasi-modal').modal('show');
     });
 </script>
 @endsection

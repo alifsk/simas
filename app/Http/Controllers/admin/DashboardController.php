@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DetailKegiatan;
 use App\Models\Kegiatan;
+use App\Models\KhutbahJumat;
 use App\Models\Pemasukan;
 use App\Models\Pengeluaran;
 use App\Models\User;
@@ -32,6 +34,8 @@ class DashboardController extends Controller
         $saldo = "Rp" . number_format($saldo, 0, ',', '.');
         // dd($saldo);
         $kegiatan = Kegiatan::count();
+        $detail_kegiatan = DetailKegiatan::count();
+        $khutbah = KhutbahJumat::count();
         $zakat = Zakat::count();
         $user = User::count();
 
@@ -47,7 +51,7 @@ class DashboardController extends Controller
 
         $pengeluaran = Pengeluaran::all();
 
-        return view('admin.dashboard', compact('total_pemasukan', 'total_pengeluaran', 'kegiatan', 'zakat', 'user', 'pengeluaran', 'pemasukan', 'saldo'));
+        return view('admin.dashboard', compact('total_pemasukan', 'total_pengeluaran', 'kegiatan', 'zakat', 'user', 'pengeluaran', 'pemasukan', 'saldo', 'detail_kegiatan', 'khutbah'));
     }
 
     public function getChart()
