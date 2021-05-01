@@ -12,7 +12,7 @@
 
     @include('user/include.css')
     <!-- Datatables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     @stack('styles')
     <style>
         .nav-menu ul li a.active {
@@ -49,7 +49,6 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @include('user/include.javascript')
     @yield('extendsjs')

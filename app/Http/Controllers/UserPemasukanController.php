@@ -38,14 +38,6 @@ class UserPemasukanController extends Controller
                     $satuan = "Rp" . number_format($pemasukan->jumlah_pemasukan, 0, ',', '.');
                     return $satuan;
                 })
-                ->addColumn('action', function ($data) {
-                    $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-success btn-sm edit-post"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>';
-                    $button .= '&nbsp;&nbsp;';
-                    $button .= '<button type="button" name="delete" id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>';
-                    return $button;
-                })
-                ->rawColumns(['action'])
-                ->addIndexColumn()
                 ->make(true);
         }
 

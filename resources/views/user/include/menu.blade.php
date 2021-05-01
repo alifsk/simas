@@ -23,11 +23,12 @@
                       <li><a href="{{ route('user/pengeluaran') }}">Pengeluaran</a></li>
                     </ul>
                 </li>
-                {{-- <li class="drop-down"><a href="#"  class="@yield('layanan-menu-active')">Layanan</a>
+                <li class="drop-down"><a href="#" class="@yield('layanan-menu-active')">Layanan</a>
                     <ul>
-                      <li><a href="{{ route('user/muallaf') }}">Muallaf Center</a></li>
+                      <li><a href="{{ route('user/zakat') }}">Unit Pelayanan Zakat</a></li>
+                      <li><a href="{{ route('user/informasi') }}">Muallaf Center</a></li>
                     </ul>
-                </li> --}}
+                </li>
                 <li ><a href="{{ route('user/kegiatan') }}" class="@yield('kegiatan-menu-active')">Kegiatan</a></li>
                 <li><a href="{{ route('user/gallery') }}" class="@yield('gallery-menu-active')">Gallery</a></li>
                 <li><a href="{{ url('/login') }}" class="@yield('login-menu-active')">Login</a></li>

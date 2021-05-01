@@ -19,11 +19,11 @@ class UserGalleryController extends Controller
     {
         $data['jenis_kegiatan'] = JenisKegiatan::orderBy('nama', 'asc')->get();
         $data['kegiatan'] = DB::table('detail_kegiatan as detail')
-                            ->join('kegiatan as kegiatan', 'detail.kegiatan_id', '=', 'kegiatan.id')
-                            ->join('jenis_kegiatan as jenis', 'kegiatan.jenis_kegiatan_id', '=', 'jenis.id')
-                            ->orderBy('detail.id', 'desc')
-                            ->select('detail.id as image_id', 'detail.foto as image', 'kegiatan.nama_kegiatan as name', 'jenis.nama as category')
-                            ->paginate(6);
+            ->join('kegiatan as kegiatan', 'detail.kegiatan_id', '=', 'kegiatan.id')
+            ->join('jenis_kegiatan as jenis', 'kegiatan.jenis_kegiatan_id', '=', 'jenis.id')
+            ->orderBy('detail.id', 'desc')
+            ->select('detail.id as image_id', 'detail.foto as image', 'kegiatan.nama_kegiatan as name', 'jenis.nama as category')
+            ->paginate(6);
 
         return view('user.gallery', $data);
     }

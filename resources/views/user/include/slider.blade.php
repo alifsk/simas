@@ -1,7 +1,7 @@
 <div id="home" class="slider-area">
     <div class="bend niceties preview-2">
         <div id="ensign-nivoslider" class="slides">
-            <img src="{{ url('assets/template/img/slider/2.jpg')}}" alt="" title="#slider-direction-1" />
+            <img src="{{ url('assets/template/img/slider/1.jpg')}}" alt="" title="#slider-direction-1" />
             <img src="{{ url('assets/template/img/slider/3.jpg')}}" alt="" title="#slider-direction-2" />
             <img src="{{ url('assets/template/img/slider/4.jpg')}}" alt="" title="#slider-direction-3" />
         </div>
@@ -14,15 +14,15 @@
                         <div class="slider-content">
                             <!-- layer 1 -->
                             <div class="layer-1-1 hidden-xs wow animate__slideInDown animate__animated" data-wow-duration="2s" data-wow-delay=".2s">
-                                <h2 class="title1">Prayer can change our destiny and goodness can extend our age</h2>
+                                <h2 class="title1">Hidup adalah ibadah</h2>
                             </div>
                             <!-- layer 2 -->
                             <div class="layer-1-2 wow animate__fadeIn animate__animated" data-wow-duration="2s" data-wow-delay=".2s">
-                                <h1 class="title2">Sight up to hereafter affairs and sight down to the affairs of your world, then life will be peaceful</h1>
+                                <h1 class="title2">Jadikan setiap aktivitasmu sebagai ibadah kepada sang Maha Esa</h1>
                             </div>
                             <!-- layer 3 -->
                             <div class="layer-1-3 hidden-xs wow animate__slideInUp animate__animated" data-wow-duration="2s" data-wow-delay=".2s">
-                                <a class="ready-btn page-scroll" href="">Learn More</a>
+                                <a class="ready-btn page-scroll" href="{{ route('user/imam') }}">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -38,16 +38,15 @@
                         <div class="slider-content text-center">
                             <!-- layer 1 -->
                             <div class="layer-1-1 hidden-xs wow animate__slideInUp animate__animated" data-wow-duration="2s" data-wow-delay=".2s">
-                                <h2 class="title1">The Best Business Information </h2>
+                                <h2 class="title1">Sedekah tidaklah mengurangi harta</h2>
                             </div>
                             <!-- layer 2 -->
                             <div class="layer-1-2 wow animate__fadeIn animate__animated" data-wow-duration="2s" data-wow-delay=".1s">
-                                <h1 class="title2">We're In The Business Of Get Quality Business Service</h1>
+                                <h1 class="title2">Apapun harta yang kalian infakkan maka Allah pasti akan menggantikannya</h1>
                             </div>
                             <!-- layer 3 -->
                             <div class="layer-1-3 hidden-xs wow animate__slideInUp animate__animated" data-wow-duration="2s" data-wow-delay=".2s">
-                                <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
-                                <a class="ready-btn page-scroll" href="#about">Learn More</a>
+                                <a class="ready-btn page-scroll" href="{{ route('user/pemasukan') }}">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -63,16 +62,15 @@
                         <div class="slider-content">
                             <!-- layer 1 -->
                             <div class="layer-1-1 hidden-xs wow animate__slideInUp animate__animated" data-wow-duration="2s" data-wow-delay=".2s">
-                                <h2 class="title1">The Best business Information </h2>
+                                <h2 class="title1">Perbanyak bersyukur</h2>
                             </div>
                             <!-- layer 2 -->
                             <div class="layer-1-2 wow animate__fadeIn animate__animated" data-wow-duration="2s" data-wow-delay=".1s">
-                                <h1 class="title2">Helping Business Security & Peace of Mind for Your Family</h1>
+                                <h1 class="title2">Dengan beribadah, seseorang akan tahu cara terbaik untuk bersyukur</h1>
                             </div>
                             <!-- layer 3 -->
                             <div class="layer-1-3 hidden-xs wow animate__slideInUp animate__animated" data-wow-duration="2s" data-wow-delay=".2s">
-                                <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
-                                <a class="ready-btn page-scroll" href="#about">Learn More</a>
+                                <a class="ready-btn page-scroll" href="{{ route('user/kegiatan') }}">Selengkapnya</a>
                             </div>
                         </div>
                     </div>

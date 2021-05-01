@@ -10,6 +10,6 @@
 <script src="{{ url('assets/template/vendor/nivo-slider/js/jquery.nivo.slider.js')}}"></script>
 <script src="{{ url('assets/template/vendor/owl.carousel/owl.carousel.min.js')}}"></script>
 <script src="{{ url('assets/template/vendor/venobox/venobox.min.js')}}"></script>
-
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <!-- Template Main JS File -->
 <script src="{{ url('assets/template/js/main.js')}}"></script>

@@ -24,7 +24,7 @@
                             </div>
                             <div class="card-body">
                               <a class="btn btn-success btn-sm"><i class="fa fa-bullhorn"></i> Pembicara</a>
-                              <h5>{{$k->name}}</h5>
+                              <h6>{{$k->name}}</h6>
                               <a class="btn btn-primary btn-sm"><i class="fa fa-tags"></i> Topik</a>
                               <p>{{$k->topik}}</p>
                             </div>

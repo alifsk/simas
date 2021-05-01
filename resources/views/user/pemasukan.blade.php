@@ -58,7 +58,7 @@
             serverSide: true, //aktifkan server-side
             responsive: true,
             ajax: {
-                url: "",
+                url: "{{ route('user/pemasukan') }}",
                 type: 'GET'
             },
             columns: [{
@@ -81,10 +81,9 @@
                     data: 'keterangan',
                     name: 'keterangan'
                 },
-
             ],
             order: [
-                [0, 'desc']
+                [0, 'asc']
             ]
         });
     });

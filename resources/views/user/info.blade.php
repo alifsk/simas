@@ -1,5 +1,5 @@
 @extends('user.v_template')
-@section('title','Beranda')
+@section('title','Layanan')
 @section('content')
 
 <!-- ======= About Section ======= -->
@@ -17,10 +17,9 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="well-left">
             <div class="single-well">
-              <h3 class="section-headline text-center">Visi</h3>
-              <hr>
+              <h1 class="sec-head">Visi</h1>
               @foreach ($visi as $v)
-                  <p style="text-align: justify; text-justify: inter-word;">{{ $v->isi }}</p>
+                  <p>{{ $v->isi }}</p>
               @endforeach
             </div>
           </div>
@@ -29,15 +28,15 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="well-middle">
             <div class="single-well">
-              <h3 class="section-headline text-center">Misi</h3>
-              <hr>
-              <ol>
+              <h1 class="sec-head">Misi</h1>
+              <ul>
+                @php( $no = 1 )
                 @foreach ($misi as $m)
                   <li>
-                    {{ $m->isi }}
+                    <p>{{$no++}}.&nbsp;{{ $m->isi }}</p>
                   </li>
                 @endforeach
-              </ol>
+              </ul>
             </div>
           </div>
         </div>
@@ -48,6 +47,6 @@
 
 @endsection
 
-@section('home-menu-active')
+@section('layanan-menu-active')
 active
 @endsection

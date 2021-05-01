@@ -20,13 +20,13 @@
                     <div class="col-md-4 col-sm-4 col-xs-12" style="margin-bottom: 5px;">
                         <div class="card" style="width: 100%; height: 100%;">
                             <div class="card-header" style="height: 30%;">
-                                <h5 class="card-title text-center" style="font-weight: bold;">{{$k->nama_kegiatan}}</h5>
+                                <h3 class="card-title text-center" style="font-weight: bold;">{{$k->nama_kegiatan}}</h3>
                             </div>
                             <div class="card-body">
                               <a class="btn btn-success btn-sm"><i class="fa fa-calendar"></i> Tanggal</a>
-                              <h5>{{$k->tgl}}</h5>
+                              <h4>{{$k->tgl}}</h4>
                               <a class="btn btn-primary btn-sm"><i class="fa fa-tags"></i> Deskripsi</a>
-                              <p>{{$k->deskripsi}}</p>
+                              <h5>{{$k->deskripsi}}</h5>
                             </div>
                         </div>
                     </div>

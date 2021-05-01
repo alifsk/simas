@@ -25,6 +25,7 @@ use App\Http\Controllers\UserSholatController;
 use App\Http\Controllers\UserGalleryController;
 use App\Http\Controllers\UserBerandaController;
 use App\Http\Controllers\UserMuallafController;
+use App\Http\Controllers\UserLayananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,8 @@ Route::get('user/khutbah', [UserKhutbahController::class, 'index'])->name('user/
 Route::get('user/kegiatan', [UserKegiatanController::class, 'index'])->name('user/kegiatan');
 Route::get('user/imam', [UserSholatController::class, 'index'])->name('user/imam');
 Route::get('user/gallery', [UserGalleryController::class, 'index'])->name('user/gallery');
+Route::get('user/zakat', [UserLayananController::class, 'zakat'])->name('user/zakat');
+Route::get('user/informasi', [UserLayananController::class, 'info'])->name('user/informasi');
 Route::get('user/muallaf', [UserMuallafController::class, 'index'])->name('user/muallaf');
 Route::post('user/muallaf', [UserMuallafController::class, 'store'])->name('daftarmuallaf');
 //jadwal sholat

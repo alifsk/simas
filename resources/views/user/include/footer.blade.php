@@ -34,14 +34,14 @@
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="footer-content">
                         <div class="footer-head">
-                            <h4>information</h4>
+                            <h4>informasi</h4>
                             <p>
-                                If you have questions regarding religious activities or mosque administration, please contact the contact below
+                                Jika Anda memiliki pertanyaan tentang kegiatan keagamaan atau administrasi masjid, silakan hubungi kontak di bawah ini.
                             </p>
                             <div class="footer-contacts">
-                                <p><span>Tel:</span> +123 456 789</p>
+                                <p><span>Telp:</span> +123 456 789</p>
                                 <p><span>Email:</span> contact@makbadulMuttaqin.com</p>
-                                <p><span>Working Hours:</span> 9am-3pm</p>
+                                <p><span>Jam Operasional:</span> 09.00 - 15.00 WIB</p>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="footer-content">
                         <div class="footer-head">
-                                <h4>Location</h4>
+                                <h4>Lokasi</h4>
                                 <!-- Start Map -->
                                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.500072451378!2d112.55695561435373!3d-7.520304276292187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7874cd6a31916d%3A0xae0e7d735409e8b8!2sMASJID%20JAMI&#39;%20MAKBADUL%20MUTTAQIN!5e0!3m2!1sid!2sid!4v1615377266305!5m2!1sid!2sid" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                                 <!-- End Map -->

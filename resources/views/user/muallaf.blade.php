@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="section-headline text-center">
-                        <h2>Mualaf Center</h2>
+                        <h2>Muallaf Center</h2>
                     </div>
                 </div>
             </div>
@@ -19,7 +19,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <div class="well-left">
                     <div class="single-well">
-                        <h4 class="section-headline text-center">SOP Pelayanan Mualaf</h4>
+                        <h3 class="section-headline text-center">SOP Pelayanan Muallaf</h3>
                         <hr>
                         <ol>
                             <li>Pendaftaran</li>
@@ -28,16 +28,15 @@
                                 <li> - Mengisi form permohonan</li>
                                 <li> - Melengkapi persyaratan :</li>
                                 <ol>
-                                    <li> 1. Pas Foto 2 x 3 : 3 Lembar (warna)</li>
+                                    <li> 1. Pas Foto 3 x 4 : 3 Lembar (background merah)</li>
                                     <li> 2. Surat Pengantar dari RT bagi WNI</li>
                                     <li> 3. Foto Copy KTP</li>
                                     <li> 4. Foto Copy KK</li>
                                     <li> 5. Materai 6000 : 2 Lembar</li>
                                     <li> 6. Menyerahkan Surat Baptis (Asli)</li>
-                                    <li> 7. Surat Pengantar Kedutaan bagi WNA</li>
-                                    <li> 8. Foto Copy Pasport bagi WNA</li>
-                                    <li> 9. Saksi 2 (dua) orang</li>
-                                    <li> 10. Foto Copy KTP Saksi 2 Orang (dibawa)</li>
+                                    <li> 7. Foto Copy Pasport bagi WNA</li>
+                                    <li> 8. Saksi 2 (dua) orang muslim</li>
+                                    <li> 9. Foto Copy KTP Saksi 2 Orang (dibawa)</li>
                                 </ol>
                             </ul>
                             <li>Verifikasi berkas oleh petugas</li>
@@ -50,7 +49,7 @@
                                 </ul>
                             <li>Tandatangan berkas / Sertifikat</li>
                             <li>Waktu Jam : 09.00 – 15.00 Senin – Jum’at</li>
-                            <li>Tempat Ruang Pusat Pelayanan Muallaf Masjid Istiqlal lantai dasar.</li>
+                            <li>Tempat Ruang Pelayanan Muallaf Masjid Ma'badul Muttaqin.</li>
                         </ol>
                     </div>
                   </div>
@@ -59,35 +58,34 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="well-middle">
                         <div class="single-well">
-                            <h4 class="section-subheadline text-center">Persyaratan Masuk Islam</h4>
+                            <h3 class="section-subheadline text-center">Persyaratan Masuk Islam</h3>
                             <hr>
                             <ol>
-                                <li> Pas Foto 2 x 3 : 3 Lembar (warna)</li>
+                                <li> Pas Foto 3 x 4 : 3 Lembar (background merah)</li>
                                 <li> Surat Pengantar dari RT/RW bagi WNI</li>
                                 <li> Foto Copy KTP</li>
                                 <li> Foto Copy KK</li>
                                 <li> Materai 6000 : 2 Lembar</li>
                                 <li> Menyerahkan Surat Baptis (Asli)</li>
-                                <li> Surat Pengantar Kedutaan bagi WNA</li>
                                 <li> Foto Copy Pasport bagi WNA</li>
-                                <li> Saksi 2 (dua) orang</li>
+                                <li> Saksi 2 (dua) orang muslim</li>
                                 <li> Foto Copy KTP Saksi 2 Orang (dibawa)</li>
                                 <li> Mengisi Surat Permohonan Masuk Islam</li>
                                 <li> Waktu Jam : 09.00 – 15.00 Senin – Jum’at</li>
-                                <li> Tempat Ruang Pusat Pelayanan Muallaf Masjid Istiqlal lantai dasar.</li>
+                                <li> Tempat Ruang Pelayanan Muallaf Masjid Ma'badul Muttaqin.</li>
                             </ol>
                         </div>
                     </div>
                 </div>
                 <!-- End misi-->
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                     <span>
                         <a href="javascript:void(0)" class="ready-btn" id="tombol-tambah">Daftar Mualaf</a>
                     </span>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
