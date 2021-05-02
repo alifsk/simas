@@ -34,14 +34,14 @@
     </style>
 </head>
 
-<body onload="window.print();">
+<body>
     <div class="wrapper">
         <!-- Main content -->
         <section class="invoice">
             <!-- title row -->
             <div class="row">
                 <div class="col-lg-6 invoice-col">
-                    <img src="{{ url('/foto/baznas.png') }}" alt="Image" style="width: 20%">
+                    {{--<img src="{{ url('/foto/baznas.png') }}" alt="Image" style="width: 20%">--}}
                     <strong>Bukti Pembayaran Zakat</strong><br>
                 </div>
                 <!-- /.col -->
@@ -55,20 +55,21 @@
                 </div>
             </div>
             <!-- Table row -->
+            @foreach($zakat as $datas)
             <div class="row">
                 <div class="col-xs-12 table-responsive">
                     <table class="mt-4 mb-4">
                         <tr>
-                            <td>NPWZ</td><td class="text-center" style="width: 50px"> : </td><td>{{ $zakat->id }}</td>
+                            <td>NPWZ</td><td class="text-center" style="width: 50px"> : </td><td>{{ $datas->id_zakat }}</td>
                         </tr>
                         <tr>
-                            <td>Jenis Zakat</td><td class="text-center" style="width: 50px"> : </td><td>{{ $zakat->jenis_zakat }}</td>
+                            <td>Jenis Zakat</td><td class="text-center" style="width: 50px"> : </td><td>{{ $datas->jenis_zakat }}</td>
                         </tr>
                         <tr>
-                            <td>Nama</td><td class="text-center" style="width: 50px"> : </td><td>{{ $zakat->nama }}</td>
+                            <td>Nama</td><td class="text-center" style="width: 50px"> : </td><td>{{ $datas->nama }}</td>
                         </tr>
                         <tr>
-                            <td>Jumlah</td><td class="text-center" style="width: 50px"> : </td><td><b>{{ $zakat->ket }}</b></td>
+                            <td>Jumlah</td><td class="text-center" style="width: 50px"> : </td><td><b>{{ $datas->ket }}</b></td>
                         </tr>
                     </table>
                 </div>
@@ -84,7 +85,7 @@
                             </tr>
                             <tr>
                                 <td style="width: 344px;" width="50%">&nbsp;</td>
-                                <td style="font-size: 14px; text-align: center; width: 284px;">Mojokerto, {{ $zakat->tgl }}</td>
+                                <td style="font-size: 14px; text-align: center; width: 284px;">Mojokerto, {{ $datas->tgl }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 344px;" width="50%">&nbsp;</td>
@@ -98,12 +99,13 @@
                             </tr>
                             <tr>
                                 <td style="width: 344px;" width="50%">&nbsp;</td>
-                                <td style="font-size: 14px; text-align: center; width: 284px;"><strong><u>{{ $zakat->nama }}</u></strong></td>
+                                <td style="font-size: 14px; text-align: center; width: 284px;"><strong><u>{{ $datas->nama }}</u></strong></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            @endforeach
             <!-- /.row -->
         </section>
         <!-- /.content -->
@@ -112,7 +114,14 @@
     <!-- Code injected by live-server -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
+
         $(document).ready(function() {
+            window.print();
+
+            window.onafterprint = function () {
+                window.history.back()
+            }
+
             let count = $('.jumlah-pengeluaran').length
 
             for (i = 1; i <= count; i++) {
@@ -129,38 +138,38 @@
             }
         })
         // <![CDATA[  <-- For SVG support
-        if ('WebSocket' in window) {
-            (function() {
-                function refreshCSS() {
-                    var sheets = [].slice.call(document.getElementsByTagName("link"));
-                    var head = document.getElementsByTagName("head")[0];
-                    for (var i = 0; i < sheets.length; ++i) {
-                        var elem = sheets[i];
-                        var parent = elem.parentElement || head;
-                        parent.removeChild(elem);
-                        var rel = elem.rel;
-                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-                        }
-                        parent.appendChild(elem);
-                    }
-                }
-                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-                var address = protocol + window.location.host + window.location.pathname + '/ws';
-                var socket = new WebSocket(address);
-                socket.onmessage = function(msg) {
-                    if (msg.data == 'reload') window.location.reload();
-                    else if (msg.data == 'refreshcss') refreshCSS();
-                };
-                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-                    console.log('Live reload enabled.');
-                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-                }
-            })();
-        } else {
-            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-        }
+        // if ('WebSocket' in window) {
+        //     (function() {
+        //         function refreshCSS() {
+        //             var sheets = [].slice.call(document.getElementsByTagName("link"));
+        //             var head = document.getElementsByTagName("head")[0];
+        //             for (var i = 0; i < sheets.length; ++i) {
+        //                 var elem = sheets[i];
+        //                 var parent = elem.parentElement || head;
+        //                 parent.removeChild(elem);
+        //                 var rel = elem.rel;
+        //                 if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+        //                     var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+        //                     elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+        //                 }
+        //                 parent.appendChild(elem);
+        //             }
+        //         }
+        //         var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+        //         var address = protocol + window.location.host + window.location.pathname + '/ws';
+        //         var socket = new WebSocket(address);
+        //         socket.onmessage = function(msg) {
+        //             if (msg.data == 'reload') window.location.reload();
+        //             else if (msg.data == 'refreshcss') refreshCSS();
+        //         };
+        //         if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+        //             console.log('Live reload enabled.');
+        //             sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+        //         }
+        //     })();
+        // } else {
+        //     console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        // }
         // ]]>
     </script>
 </body>
