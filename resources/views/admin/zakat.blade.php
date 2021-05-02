@@ -270,9 +270,13 @@
         })
     });
 
-    $(document).on('click', '.print', function() {
-        dataId = $(this).attr('id');
-        // $('#konfirmasi-modal').modal('show');
+    $(document).on('click', '.btn-print', function() {
+        let data_id = $(this).data('id')
+        let data_href = '/pembayaran_zakat/' +data_id 
+
+        if (typeof data_id != undefined) {
+            window.location.href = data_href
+        }
     });
 </script>
 @endsection

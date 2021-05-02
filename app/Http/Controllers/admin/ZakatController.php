@@ -41,7 +41,7 @@ class ZakatController extends Controller
                     $button .= '&nbsp;&nbsp;';
                     $button .= '<button type="button" name="delete" id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>';
                     $button .= '&nbsp;&nbsp;';
-                    $button .= '<button type="button" name="print" id="' . $data->id . '" class="print btn btn-warning btn-sm"><i class="fa fa-print" aria-hidden="true"></i> Print</button>';
+                    $button .= '<button type="button" name="print" data-id="' . $data->id . '" class="btn-print btn btn-warning btn-sm"><i class="fa fa-print" aria-hidden="true"></i> Print</button>';
                     return $button;
                 })
                 ->rawColumns(['action'])
@@ -139,16 +139,20 @@ class ZakatController extends Controller
     {
         $zakat = DB::table('zakat')
             ->join('jenis_zakat', 'jenis_zakat.id', '=', 'zakat.jenis_zakat_id')
+            ->where('zakat.id', $id)
             ->select([
-                'zakat.id as id',
+                'zakat.id as id_zakat',
                 'zakat.tgl as tgl',
                 'jenis_zakat.nama as jenis_zakat',
                 'zakat.pembayar as nama',
                 'zakat.keterangan as ket'
             ])
-            ->find($id);
+            ->get();
 
-        $pdf = PDF::loadView('admin.print_zakat', compact('zakat'))->setPaper('a4', 'landscape');
-        return $pdf->stream();
+        // dd($zakat);
+
+        // $pdf = PDF::loadView('admin.print_zakat', compact('zakat'))->setPaper('a4', 'landscape');
+        // return $pdf->stream();
+        return view('admin.print_zakat', compact('zakat'));
     }
 }
